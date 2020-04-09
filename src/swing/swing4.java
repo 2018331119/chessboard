@@ -117,6 +117,26 @@ public class swing4 extends JFrame implements ActionListener{
             swing5 frame1 = new swing5(4);
             frame1.setVisible(true);
         }
+        else if(ae.getSource()==btn5)
+        {
+            swing5 frame1 = new swing5(5);
+            frame1.setVisible(true);
+        }
+        else if(ae.getSource()==btn6)
+        {
+            swing5 frame1 = new swing5(6);
+            frame1.setVisible(true);
+        }
+        else if(ae.getSource()==btn7)
+        {
+            swing5 frame1 = new swing5(7);
+            frame1.setVisible(true);
+        }
+        else if(ae.getSource()==btn8)
+        {
+            swing5 frame1 = new swing5(8);
+            frame1.setVisible(true);
+        }
         else
         {
             JOptionPane.showMessageDialog(null,"Sorry! We do not create this level.");

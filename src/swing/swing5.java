@@ -74,6 +74,30 @@ public class swing5 extends JFrame implements ActionListener{
            jl1.setText("You have to placed 16 Bishop");
            jl2.setText("Press START to start the game");
        }
+        else  if(count==5)
+       {
+           jl.setText("You are given a 8X8 chessboard.");
+           jl1.setText("You have to placed 16 knight");
+           jl2.setText("Press START to start the game");
+       }
+        else  if(count==6)
+       {
+           jl.setText("You are given a 8X8 chessboard.");
+           jl1.setText("You have to placed 16 rock");
+           jl2.setText("Press START to start the game");
+       }
+        else  if(count==7)
+       {
+           jl.setText("You are given a 8X8 chessboard.");
+           jl1.setText("You have to placed 16 queen");
+           jl2.setText("Press START to start the game");
+       }
+        else  if(count==8)
+       {
+           jl.setText("You are given a 8X8 chessboard.");
+           jl1.setText("You have to placed 16 Bishop");
+           jl2.setText("Press START to start the game");
+       }
        
     }
    @Override
@@ -98,6 +122,27 @@ public class swing5 extends JFrame implements ActionListener{
             swing8 frame = new swing8();
             frame.setVisible(true);
         }
+        else if(count==5)
+        {
+            swing9 frame = new swing9();
+            frame.setVisible(true);
+        }
+        else if(count==6)
+        {
+            swing10 frame = new swing10();
+            frame.setVisible(true);
+        }
+        else if(count==7)
+        {
+            swing11 frame = new swing11();
+            frame.setVisible(true);
+        }
+        else if(count==8)
+        {
+            swing12 frame = new swing12();
+            frame.setVisible(true);
+        }
+        
         }
         else
             dispose();

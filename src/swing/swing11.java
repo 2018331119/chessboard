@@ -1,4 +1,4 @@
-//queen
+//queen and 2nd division
 package swing;
 import java.awt.Color;
 import java.awt.Container;
@@ -10,14 +10,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-public class swing7 extends JFrame implements ActionListener{
+public class swing11 extends JFrame implements ActionListener{
     private Container c;
     private GridLayout gd;
     private JButton[][] btn;
     private JButton btn1;
     private ImageIcon icon;
+    private int i,j;
     int count = 0,rr,ll,rr1,ll1,rr2,ll2;
-    swing7()
+    int arr1[] = {1,1,-1,-1,2,2,-2,-2};
+    int arr2[] = {-2,2,-2,2,1,-1,1,-1};
+    swing11()
     {
          this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setBounds(100,20,1200,800);
@@ -46,12 +49,40 @@ public class swing7 extends JFrame implements ActionListener{
              c.add(btn[i][j]);
         }
     }
+        btn[5][3].setBackground(Color.green);
+        i=5;
+        j=3;
+        for (int k = 0; k < 8; k++) {
+                          btn[i][k].setBackground(Color.green);
+                          btn[k][j].setBackground(Color.green);
+                          
+                      }
+         for (int k = 0; k < 8; k++) {
+                          btn[4][k].setBackground(Color.green);
+                          btn[k][3].setBackground(Color.green);
+                      }
+        for (int k = 1; k < 8; k++) {
+                          if((i-k>=0) && (j-k>=0))
+                          {
+                             btn[i-k][j-k].setBackground(Color.green);  
+                          }
+                          if((i+k<=7) && (j+k<=7))
+                          {
+                          btn[i+k][j+k].setBackground(Color.green);   
+                          }
+                           if((i+k<=7) && (j-k>=0))
+                          {
+                           btn[i+k][j-k].setBackground(Color.green);  
+                          }
+                            if((i-k>=0) && (j+k<=7))
+                          {
+                           btn[i-k][j+k].setBackground(Color.green);  
+                          }
+                      }
+        btn[7][7].setBackground(Color.red);
 }
  @Override
-    public void actionPerformed(ActionEvent ae) {
-      if(count<=14)
-      {
-          count++;
+    public void actionPerformed(ActionEvent ae){
           Object src = ae.getSource();
           for(int i=0;i<8;i++)
           {
@@ -60,83 +91,56 @@ public class swing7 extends JFrame implements ActionListener{
                   if(btn[i][j]==src)
                   {
                       rr1=0;
-                      btn[i][j].setIcon(icon);
-                      for (int k = 0; k < 8; k++) {
-                          if(k!=i && btn[k][j].getIcon()==icon)
+                   //   btn[i][j].setIcon(null);
+                   //   btn[i][j].setIcon(icon);
+                       for (int k = 0; k < 8; k++) {
+                          if(k!=i && btn[k][j].getBackground()!=Color.green)
                           {
                            rr1=1;   
                           }
-                          if(k!=j && btn[i][k].getIcon()==icon)
+                          if(k!=j && btn[i][k].getBackground()!=Color.green)
+                          {
+                           rr1=1;   
+                          }
+                          
+                      }
+                       for (int k = 1; k < 8; k++) {
+                          if((i-k>=0) && (j-k>=0) && btn[i-k][j-k].getBackground()!=Color.green)
+                          {
+                           rr1=1;   
+                          }
+                          if((i+k<=7) && (j+k<=7) && btn[i+k][j+k].getBackground()!=Color.green)
+                          {
+                           rr1=1;   
+                          }
+                           if((i+k<=7) && (j-k>=0) && btn[i+k][j-k].getBackground()!=Color.green)
+                          {
+                           rr1=1;   
+                          }
+                            if((i-k>=0) && (j+k<=7) && btn[i-k][j+k].getBackground()!=Color.green)
                           {
                            rr1=1;   
                           }
                       }
-                      if(rr1==1){
+                   //  System.out.println(rr1);
+                      if(rr1==1 || btn[i][j].getBackground()!=Color.green){
                           btn[i][j].setIcon(null);
                           btn[i][j].setBackground(Color.red);
                       JOptionPane.showMessageDialog(null,"OOps!Your game is over.");
                       dispose();
                       }
                       else
-                          return;
-                  }
-              }
-          }
-      }
-      else
-      {
-          Object src = ae.getSource();
-          for(int i=0;i<8;i++)
-          {
-              for(int j=0;j<8;j++)
-              {
-                  if(btn[i][j]==src)
-                  {
-                      rr1=0;
-                      btn[i][j].setIcon(null);
-                      btn[i][j].setBackground(Color.green);
-                      for (int k = 0; k < 8; k++) {
-                          if(k!=i && btn[k][j].getBackground()==Color.green)
-                          {
-                           rr1=1;   
-                          }
-                          if(k!=j && btn[i][k].getBackground()==Color.green)
-                          {
-                           rr1=1;   
-                          }
-                      }
-                      for (int k = 1; k < 8; k++) {
-                          if((i-k>=0) && (j-k>=0) && btn[i-k][j-k].getBackground()==Color.green)
-                          {
-                           rr1=1;   
-                          }
-                          if((i+k<=7) && (j+k<=7) && btn[i+k][j+k].getBackground()==Color.green)
-                          {
-                           rr1=1;   
-                          }
-                           if((i+k<=7) && (j-k>=0) && btn[i+k][j-k].getBackground()==Color.green)
-                          {
-                           rr1=1;   
-                          }
-                            if((i-k>=0) && (j+k<=7) && btn[i-k][j+k].getBackground()==Color.green)
-                          {
-                           rr1=1;   
-                          }
-                      }
-                      if(rr1==1){
-                          btn[i][j].setBackground(Color.red);
-                      JOptionPane.showMessageDialog(null,"OOps!Your game is over.");
-                      }
-                      else
-                          JOptionPane.showMessageDialog(null,"Congratulation,your level is complete");
+                      {
+                          btn[i][j].setIcon(icon);
+                           JOptionPane.showMessageDialog(null,"Congratulation!");
                       dispose();
+                      }
                   }
               }
           }
-      }
     }   
     public static void main(String[] args) {
-        swing7 frame = new swing7();
+        swing11 frame = new swing11();
        frame.setVisible(true);
     }
 }
