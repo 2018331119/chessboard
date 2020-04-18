@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 public class swing5 extends JFrame implements ActionListener{
     private Container c;
     private JTextField jt;
-    private JLabel jl,jl1,jl2,jl3;
+    private JLabel jl,jl1,jl2,jl3,jl4,jl5;
     private JButton jb,jb1;
     private Font f;
     static int count;
@@ -37,42 +37,66 @@ public class swing5 extends JFrame implements ActionListener{
         jl1.setFont(f);
         c.add(jl1);
          jl2 = new JLabel();
-        jl2.setBounds(10,70,300,20);
+        jl2.setBounds(10,70,500,20);
         jl2.setFont(f);
         c.add(jl2);
+        jl3 = new JLabel();
+        jl3.setBounds(10,100,300,20);
+        jl3.setFont(f);
+        c.add(jl3);
+        jl4 = new JLabel();
+        jl4.setBounds(10,130,300,20);
+        jl4.setFont(f);
+        c.add(jl4);
+        jl5 = new JLabel();
+        jl5.setBounds(10,160,300,20);
+        jl5.setFont(f);
+        c.add(jl5);
         jb = new JButton("START");
-        jb.setBounds(180,100,120,20);
+        jb.setBounds(180,190,120,20);
         jb.setFont(f);
         c.add(jb);
         jb.addActionListener(this);
          jb1 = new JButton("BACK");
-        jb1.setBounds(180,130,120,20);
+        jb1.setBounds(180,190,120,20);
         jb1.setFont(f);
         c.add(jb1);
         jb1.addActionListener(this);
        if(count==1)
        {
            jl.setText("You are given a 8X8 chessboard.");
-           jl1.setText("You have to placed 16 Knight");
-           jl2.setText("Press START to start the game");
+           jl1.setText("You have to placed 16 Knight.");
+           jl2.setText("So that they can't attack each");
+           jl3.setText("other in their first move.");
+            jl4.setText("You have 10 seconds.");
+           jl5.setText("Press START to start the game.");
        }
        else  if(count==2)
        {
-           jl.setText("You are given a 8X8 chessboard.");
-           jl1.setText("You have to placed 16 Rock");
-           jl2.setText("Press START to start the game");
+            jl.setText("You are given a 8X8 chessboard.");
+           jl1.setText("You have to placed 8 Rock.");
+           jl2.setText("So that they can't attack each");
+           jl3.setText("other in their first move.");
+           jl4.setText("You have 10 seconds.");
+           jl5.setText("Press START to start the game.");
        }
         else  if(count==3)
        {
-           jl.setText("You are given a 8X8 chessboard.");
-           jl1.setText("You have to placed 8 Queen");
-           jl2.setText("Press START to start the game");
+            jl.setText("You are given a 8X8 chessboard.");
+           jl1.setText("You have to placed 8 Queen.");
+           jl2.setText("So that they can't attack each");
+           jl3.setText("other in their first move.");
+            jl4.setText("You have 10 seconds.");
+           jl5.setText("Press START to start the game.");
        }
         else  if(count==4)
        {
-           jl.setText("You are given a 8X8 chessboard.");
-           jl1.setText("You have to placed 16 Bishop");
-           jl2.setText("Press START to start the game");
+            jl.setText("You are given a 8X8 chessboard.");
+           jl1.setText("You have to placed 8 Bishop.");
+           jl2.setText("So that they can't attack each");
+           jl3.setText("other in their first move.");
+            jl4.setText("You have 10 seconds.");
+           jl5.setText("Press START to start the game.");
        }
         else  if(count==5)
        {

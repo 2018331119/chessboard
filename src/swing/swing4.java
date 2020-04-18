@@ -104,37 +104,37 @@ public class swing4 extends JFrame implements ActionListener{
         }
         else if(ae.getSource()==btn2)
         {
-            swing5 frame1 = new swing5(2);
+            swing14 frame1 = new swing14(2);
             frame1.setVisible(true);
         }
         else if(ae.getSource()==btn3)
         {
-            swing5 frame1 = new swing5(3);
+            swing14 frame1 = new swing14(3);
             frame1.setVisible(true);
         }
         else if(ae.getSource()==btn4)
         {
-            swing5 frame1 = new swing5(4);
+            swing14 frame1 = new swing14(4);
             frame1.setVisible(true);
         }
         else if(ae.getSource()==btn5)
         {
-            swing5 frame1 = new swing5(5);
+            swing14 frame1 = new swing14(5);
             frame1.setVisible(true);
         }
         else if(ae.getSource()==btn6)
         {
-            swing5 frame1 = new swing5(6);
+            swing14 frame1 = new swing14(6);
             frame1.setVisible(true);
         }
         else if(ae.getSource()==btn7)
         {
-            swing5 frame1 = new swing5(7);
+            swing14 frame1 = new swing14(7);
             frame1.setVisible(true);
         }
         else if(ae.getSource()==btn8)
         {
-            swing5 frame1 = new swing5(8);
+            swing14 frame1 = new swing14(8);
             frame1.setVisible(true);
         }
         else

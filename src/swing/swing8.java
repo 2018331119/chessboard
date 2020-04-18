@@ -10,12 +10,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import static swing.swing1.counter;
 public class swing8 extends JFrame implements ActionListener{
     private Container c;
     private GridLayout gd;
     private JButton[][] btn;
     private JButton btn1;
     private ImageIcon icon;
+    Timer timer;
     int count = 0,rr,ll,rr1,ll1,rr2,ll2,ll3,rr3;
     swing8()
     {
@@ -46,13 +49,36 @@ public class swing8 extends JFrame implements ActionListener{
              c.add(btn[i][j]);
         }
     }
+         ActionListener a = new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        System.out.println("Counter = " + counter);
+
+        if (++counter > 10) {
+          timer.stop();
+          JOptionPane.showMessageDialog(null,"Oops! Your game is over.");
+          System.exit(0);
+        }
+      }
+    };
+
+    timer = new Timer(1000, a);
+    timer.start();
 }
  @Override
     public void actionPerformed(ActionEvent ae){
-      if(count<=14)
+      Object src = ae.getSource();
+     for (int i = 0; i < 8; i++) {
+         for (int j = 0; j < 8; j++) {
+             if(btn[i][j]==src)
+             {
+                 if(btn[i][j].getIcon()!=icon)
+                     count++;
+                 break;
+             }
+         }
+     }
+        if(count<=7)
       {
-          count++;
-          Object src = ae.getSource();
           for(int i=0;i<8;i++)
           {
               for(int j=0;j<8;j++)
@@ -86,6 +112,7 @@ public class swing8 extends JFrame implements ActionListener{
                           }
                       }
                       if(rr1==1){
+                          timer.stop();
                            btn[i][j].setIcon(null);
                           btn[i][j].setBackground(Color.red);
                       JOptionPane.showMessageDialog(null,"OOps!Your game is over.");
@@ -99,7 +126,6 @@ public class swing8 extends JFrame implements ActionListener{
       }
       else
       {
-          Object src = ae.getSource();
           for(int i=0;i<8;i++)
           {
               for(int j=0;j<8;j++)
@@ -120,12 +146,16 @@ public class swing8 extends JFrame implements ActionListener{
                           }
                       }
                       if(rr1==1){
+                          timer.stop();
                           btn[i][j].setBackground(Color.red);
                       JOptionPane.showMessageDialog(null,"OOps!Your game is over.");
                       }
-                      else
+                      else{
+                          timer.stop();
                           JOptionPane.showMessageDialog(null,"Congratulation,your level is complete");
-                      dispose();
+                    swing13 frame = new swing13(4);
+                      frame.setVisible(true);  
+                  }dispose();
                   }
               }
           }

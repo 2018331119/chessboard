@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 public class swing extends JFrame implements ActionListener{
     private Container c1;
     private JLabel label1;
@@ -62,8 +64,7 @@ public class swing extends JFrame implements ActionListener{
                frame1.setVisible(true);
          }
          else if(ae.getSource()==btn2)
-         {
-             JOptionPane.showMessageDialog(null,"Game rules are one click away");
+         {             JOptionPane.showMessageDialog(null,"Game rules are one click away");
              swing2 frame = new swing2();
                frame.setVisible(true);
          }

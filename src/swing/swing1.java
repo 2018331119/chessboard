@@ -10,12 +10,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 public class swing1 extends JFrame implements ActionListener{
     private Container c;
     private GridLayout gd;
     private JButton[][] btn;
     private JButton btn1;
     private ImageIcon icon;
+    static int counter = 0;
+    Timer timer;
     int count = 0,rr,ll,rr1,ll1,rr2,ll2;
     int arr1[] = {1,1,-1,-1,2,2,-2,-2};
     int arr2[] = {-2,2,-2,2,1,-1,1,-1};
@@ -48,13 +51,37 @@ public class swing1 extends JFrame implements ActionListener{
              c.add(btn[i][j]);
         }
     }
-}
+     ActionListener a = new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        System.out.println("Counter = " + counter);
+
+        if (++counter > 10) {
+          timer.stop();
+          JOptionPane.showMessageDialog(null,"Oops! Your game is over.");
+          System.exit(0);
+        }
+      }
+    };
+
+    timer = new Timer(1000, a);
+    timer.start();
+    }
+    
  @Override
-    public void actionPerformed(ActionEvent ae) {
-      if(count<=14)
+    public void actionPerformed(ActionEvent ae){
+        Object src = ae.getSource();
+     for (int i = 0; i < 8; i++) {
+         for (int j = 0; j < 8; j++) {
+             if(btn[i][j]==src)
+             {
+                 if(btn[i][j].getIcon()!=icon)
+                     count++;
+                 break;
+             }
+         }
+     }
+      if(count<=15)
       {
-          count++;
-          Object src = ae.getSource();
           for(int i=0;i<8;i++)
           {
               for(int j=0;j<8;j++)
@@ -73,6 +100,7 @@ public class swing1 extends JFrame implements ActionListener{
                           }
                       }
                       if(rr1==1){
+                          timer.stop();
                           btn[i][j].setIcon(null);
                           btn[i][j].setBackground(Color.red);
                       JOptionPane.showMessageDialog(null,"OOps!Your game is over.");
@@ -86,7 +114,6 @@ public class swing1 extends JFrame implements ActionListener{
       }
       else
       {
-          Object src = ae.getSource();
           for(int i=0;i<8;i++)
           {
               for(int j=0;j<8;j++)
@@ -105,17 +132,22 @@ public class swing1 extends JFrame implements ActionListener{
                           }
                       }
                       if(rr1==1){
+                          timer.stop();
                           btn[i][j].setBackground(Color.red);
                       JOptionPane.showMessageDialog(null,"OOps!Your game is over.");
                       }
-                      else
+                      else{
+                          timer.stop();
                           JOptionPane.showMessageDialog(null,"Congratulation,your level is complete");
+                      swing13 frame = new swing13(1);
+                      frame.setVisible(true);
+                      }
                       dispose();
                   }
               }
           }
       }
-    }   
+    }
     public static void main(String[] args) {
         swing1 frame = new swing1();
        frame.setVisible(true);
