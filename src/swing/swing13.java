@@ -1,5 +1,6 @@
 package swing;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -8,36 +9,28 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class swing13 extends JFrame implements  ActionListener{
-    private Container c;
+public class swing13{
+    private JPanel jp;
     private JLabel jl,jl1;
     private Font f;
     private JButton jb;
-    static int count;
-    swing13(int countt)
+    public void in13(Container c,int count)
     {
-        count = countt;
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setBounds(100,20,420,100);
-        this.setTitle("Take your password");
-        init();
-    }
-    public void init()
-    {
-        c=this.getContentPane();
-        c.setBackground(Color.green);
-        c.setLayout(null);
+        jp = new JPanel();
+        jp.setBackground(Color.green);
+        jp.setLayout(null);
+        c.add(jp,"13");
         f = new Font("Arial",Font.BOLD,19);
         jl = new JLabel();
         jl.setBounds(10,20,500,20);
         jl.setFont(f);
-        c.add(jl);
+        jp.add(jl);
          jb = new JButton("Back");
         jb.setBounds(169,40,81,20);
         jb.setFont(f);
-        jb.addActionListener(this);
-        c.add(jb);
+        jp.add(jb);
         if(count==1)
         {
             jl.setText("This is your next level password: 2");
@@ -66,13 +59,28 @@ public class swing13 extends JFrame implements  ActionListener{
         {
             jl.setText("This is your next level password: 8");
         }
-    }
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-       dispose();
-    }
-    public static void main(String[] args) {
-        swing13 frame = new swing13(0);
-        frame.setVisible(true);
+           else if(count==8)
+        {
+            jl.setText("This is your next level password: 9");
+        }
+             else if(count==9)
+        {
+            jl.setText("This is your next level password: 10");
+        }
+               else if(count==10)
+        {
+            jl.setText("This is your next level password: 11");
+        }
+                 else if(count==11)
+        {
+            jl.setText("This is your next level password: 12");
+        }
+        else
+           {
+               jl.setText("This is your next level password: 8");
+           }
+        jb.addActionListener(e ->{
+           ((CardLayout)c.getLayout()).show(c,"4");
+                });
     }
 }

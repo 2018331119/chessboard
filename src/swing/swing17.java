@@ -1,4 +1,4 @@
-//queen
+//queen and 3rd division
 package swing;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -14,33 +14,33 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-public class swing7 implements ActionListener{
+public class swing17 implements ActionListener{
     private JPanel jp,panel;
      Container c;
       int counter = 10;
-        private JLabel jl;
     private GridLayout gd;
     private JButton[][] btn;
     private JButton btn1;
+      private JLabel jl;
     private ImageIcon icon;
     Timer timer;
     int count = 0,rr,ll,rr1,ll1,rr2,ll2;
-    public void in7(Container c)
+    public void in17(Container c)
     {
          this.c=c;
         panel = new JPanel();
         panel.setLayout(null);
         jl = new JLabel("Timer:10");
-     jl.setBounds(220,0,240,25);
+      jl.setBounds(220,0,240,25);
         jp = new JPanel();
         gd = new GridLayout(8,8);
         jp.setLayout(gd);
         jp.setBounds(0,25,785,737);
         panel.add(jp);
+        c.add(panel,"17");
           panel.add(jl);
            Font f = new Font("Arial",Font.BOLD,22);
         jl.setFont(f);
-        c.add(panel,"7");
         btn = new JButton[8][8];
         icon = new ImageIcon(getClass().getResource("queen.jpg"));
         for (int i = 0; i < 8; i++) {
@@ -57,9 +57,13 @@ public class swing7 implements ActionListener{
              jp.add(btn[i][j]);
         }
     }
+          btn[2][2].setIcon(icon);
+        count++;
+          btn[6][3].setIcon(icon);
+        count++;
          ActionListener a = new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-           jl.setText("Timer:"+(--counter));
+        jl.setText("Timer:"+(--counter));
           if (counter <= 0) {
           timer.stop();
           JOptionPane.showMessageDialog(null,"Oops! Your game is over.");
@@ -90,7 +94,7 @@ public class swing7 implements ActionListener{
                   if(btn[i][j]==src)
                   {
                       rr1=0;
-                      btn[i][j].setIcon(icon);
+                       btn[i][j].setIcon(icon);
                       for (int k = 0; k < 8; k++) {
                           if(k!=i && btn[k][j].getIcon()==icon)
                           {
@@ -126,13 +130,13 @@ public class swing7 implements ActionListener{
                       JOptionPane.showMessageDialog(null,"OOps!Your game is over.");
                       ((CardLayout) c.getLayout()).show(c,"4");
                       }
-                      else if(count==16){
+                      else if(count==8){
                           timer.stop();
                            btn[i][j].setIcon(null);
                           btn[i][j].setBackground(Color.green);
                           JOptionPane.showMessageDialog(null,"Congratulation,your level is complete");
                    swing13 frame = new swing13();
-                      frame.in13(c,3);
+                      frame.in13(c,7);
                        ((CardLayout)c.getLayout()).show(c,"13");
                       } 
                   }

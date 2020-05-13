@@ -1,7 +1,9 @@
 //rock and 2nd division
 package swing;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,31 +12,35 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.Timer;
-import static swing.swing1.counter;
-public class swing10 extends JFrame implements ActionListener{
-    private Container c;
+public class swing10 implements ActionListener{
+    private JPanel jp,panel;
+    Container c;
+     int counter = 10;
     private GridLayout gd;
     private JButton[][] btn;
     private JButton btn1;
+      private JLabel jl;
     private ImageIcon icon;
-     Timer timer;
+    Timer timer;
     int count = 0,rr,ll,rr1,ll1,rr2,ll2;
-    int arr1[] = {1,1,-1,-1,2,2,-2,-2};
-    int arr2[] = {-2,2,-2,2,1,-1,1,-1};
-    swing10()
+    public void in10(Container c)
     {
-         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setBounds(100,20,1200,800);
-        this.setTitle("Chessboard");
-        init();
-    }
-    public void init()
-    {
-        c = this.getContentPane();
-        c.setBackground(Color.yellow);
+         this.c=c;
+        panel = new JPanel();
+        panel.setLayout(null);
+        jl = new JLabel("Timer:10");
+       jl.setBounds(220,0,240,25);
+        jp = new JPanel();
         gd = new GridLayout(8,8);
-        c.setLayout(gd);
+        jp.setLayout(gd);
+         jp.setBounds(0,25,785,737);
+        panel.add(jp);
+        c.add(panel,"10");
+         Font f = new Font("Arial",Font.BOLD,22);
+        jl.setFont(f);
+          panel.add(jl);
         btn = new JButton[8][8];
         icon = new ImageIcon(getClass().getResource("rock.jpg"));
         for (int i = 0; i < 8; i++) {
@@ -48,34 +54,37 @@ public class swing10 extends JFrame implements ActionListener{
             btn[i][j].setBackground(Color.WHITE);  
             }
             btn[i][j].addActionListener(this);
-             c.add(btn[i][j]);
+             jp.add(btn[i][j]);
         }
     }
-        btn[1][2].setBackground(Color.green);
-        for (int k = 0; k < 8; k++) {
-                          btn[1][k].setBackground(Color.green);
-                          btn[k][2].setBackground(Color.green);
-                          
-                      }
-        btn[7][7].setBackground(Color.red);
+          btn[2][2].setIcon(icon);
+        count++;
          ActionListener a = new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        System.out.println("Counter = " + counter);
-
-        if (++counter > 10) {
+            jl.setText("Timer:"+(--counter));
+          if (counter <= 0) {
           timer.stop();
           JOptionPane.showMessageDialog(null,"Oops! Your game is over.");
-          System.exit(0);
+            ((CardLayout) c.getLayout()).show(c,"4");
         }
       }
     };
-
     timer = new Timer(1000, a);
     timer.start();
 }
  @Override
-    public void actionPerformed(ActionEvent ae){
-          Object src = ae.getSource();
+    public void actionPerformed(ActionEvent ae) {
+       Object src = ae.getSource();
+     for (int i = 0; i < 8; i++) {
+         for (int j = 0; j < 8; j++) {
+             if(btn[i][j]==src)
+             {
+                 if(btn[i][j].getIcon()!=icon)
+                     count++;
+                 break;
+             }
+         }
+     }
           for(int i=0;i<8;i++)
           {
               for(int j=0;j<8;j++)
@@ -83,41 +92,35 @@ public class swing10 extends JFrame implements ActionListener{
                   if(btn[i][j]==src)
                   {
                       rr1=0;
-                   //   btn[i][j].setIcon(null);
-                   //   btn[i][j].setIcon(icon);
-                       for (int k = 0; k < 8; k++) {
-                          if(k!=i && btn[k][j].getBackground()!=Color.green)
+                      btn[i][j].setIcon(icon);
+                      for (int k = 0; k < 8; k++) {
+                          if(k!=i && btn[k][j].getIcon()==icon)
                           {
                            rr1=1;   
                           }
-                          if(k!=j && btn[i][k].getBackground()!=Color.green)
+                          if(k!=j && btn[i][k].getIcon()==icon)
                           {
                            rr1=1;   
                           }
-                          
                       }
-                   //  System.out.println(rr1);
-                      if(rr1==1 || btn[i][j].getBackground()!=Color.green){
+                      if(rr1==1){
                           timer.stop();
-                          btn[i][j].setIcon(null);
+                            btn[i][j].setIcon(null);
                           btn[i][j].setBackground(Color.red);
                       JOptionPane.showMessageDialog(null,"OOps!Your game is over.");
+                      ((CardLayout) c.getLayout()).show(c,"4");
                       }
-                      else
-                      {
+                      else if(count==8){
                           timer.stop();
-                          btn[i][j].setIcon(icon);
-                           JOptionPane.showMessageDialog(null,"Congratulation!");
-                       swing13 frame = new swing13(6);
-                      frame.setVisible(true);
+                           btn[i][j].setIcon(null);
+                          btn[i][j].setBackground(Color.green);
+                          JOptionPane.showMessageDialog(null,"Congratulation,your level is complete");
+                       swing13 frame = new swing13();
+                      frame.in13(c,6);
+                       ((CardLayout)c.getLayout()).show(c,"13");
                       }
-                      dispose();
                   }
               }
           }
     }   
-    public static void main(String[] args) {
-        swing10 frame = new swing10();
-       frame.setVisible(true);
-    }
 }
